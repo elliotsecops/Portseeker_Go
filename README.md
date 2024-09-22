@@ -39,7 +39,7 @@
 1. **Clonar el Repositorio:**
 
    ```sh
-   git clone https://github.com/your-username/Portseeker_Go.git
+   git clone https://github.com/elliotsecops/Portseeker_Go.git
    cd Portseeker_Go
    ```
 
@@ -161,24 +161,6 @@ El proyecto depende de las siguientes dependencias:
 - **GoFpdf:** Para exportar resultados de escaneo a formato PDF.
 
 Estas dependencias son gestionadas utilizando módulos Go. El archivo `go.mod` lista todas las dependencias requeridas.
-
-## Contribuir
-
-¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
-
-1. **Bifurcar el Repositorio:** Haz clic en el botón "Fork" en la esquina superior derecha de la página del repositorio.
-2. **Clonar tu Bifurcación:** Clona el repositorio bifurcado a tu máquina local.
-3. **Crear una Nueva Rama:** Crea una nueva rama para tus cambios.
-4. **Hacer Cambios:** Realiza los cambios necesarios en el proyecto.
-5. **Confirmar Cambios:** Confirma tus cambios con un mensaje de confirmación descriptivo.
-6. **Subir Cambios:** Sube tus cambios a tu repositorio bifurcado.
-7. **Crear una Solicitud de Extracción:** Ve al repositorio original y crea una solicitud de extracción desde tu rama bifurcada.
-
-Por favor, asegúrate de que tu código siga los estándares de codificación existentes e incluya pruebas apropiadas.
-
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ## Descargar Archivos CVE
 
@@ -302,7 +284,7 @@ Esto descargará los archivos CVE más recientes y los guardará en el directori
 1. **Clone the Repository:**
 
    ```sh
-   git clone https://github.com/your-username/Portseeker_Go.git
+   git clone https://github.com/elliotsecops/Portseeker_Go.git
    cd Portseeker_Go
    ```
 
