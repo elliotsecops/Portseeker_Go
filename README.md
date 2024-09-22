@@ -1,88 +1,103 @@
-**Portseeker_Go**
+# Portseeker_Go
+
+## Tabla de Contenidos
+
+1. [Introducción](#introducción)
+2. [Características](#características)
+3. [Instalación](#instalación)
+4. [Uso](#uso)
+   - [Bandera de Línea de Comandos](#bandera-de-línea-de-comandos)
+   - [Ejecutar el Escaneo](#ejecutar-el-escaneo)
+   - [Exportar Resultados](#exportar-resultados)
+5. [Estructura del Proyecto](#estructura-del-proyecto)
+6. [Dependencias](#dependencias)
+7. [Contribuir](#contribuir)
+8. [Licencia](#licencia)
+9. [Descargar Archivos CVE](#descargar-archivos-cve)
 
 ## Introducción
 
-**Portseeker_Go** es una aplicación de Go diseñada para escanear un hostname y un rango de puertos especificados utilizando Nmap, coincidir los puertos abiertos con vulnerabilidades conocidas (CVEs) y mostrar una resumen de los resultados de la escaneo. La aplicación también proporciona la opción de exportar los resultados en formatos PDF, CSV o JSON.
+**Portseeker_Go** es una aplicación en Go diseñada para escanear un hostname y rango de puertos especificados utilizando Nmap, hacer coincidir los puertos abiertos con vulnerabilidades conocidas (CVEs) y mostrar un resumen de los resultados del escaneo. La aplicación también proporciona una opción para exportar los resultados en formatos PDF, CSV o JSON. Esta herramienta es particularmente útil para profesionales de seguridad y administradores de sistemas que necesitan evaluar rápidamente la postura de seguridad de sus sistemas.
 
 ## Características
 
-- **Integración con Nmap:** Utiliza Nmap para escanear el hostname y el rango de puertos especificados.
-- **Coincidencia de CVE:** Coincide los puertos abiertos con vulnerabilidades conocidas (CVEs) de un archivo JSON proporcionado.
-- **Panel de resumen:** Proporciona un resumen de los resultados de la escaneo, incluyendo el número total de puertos abiertos, el número total de vulnerabilidades y una desglose por severidad.
-- **Opciones de exportación:** Permite a los usuarios exportar los resultados de la escaneo en formatos PDF, CSV o JSON.
-- **Interacción con el usuario:** Pide al usuario después de la escaneo si desea exportar los resultados y en qué formato.
+- **Integración con Nmap:** Utiliza Nmap para escanear el hostname y rango de puertos especificados.
+- **Coincidencia de CVEs:** Hace coincidir los puertos abiertos con vulnerabilidades conocidas (CVEs) desde un archivo JSON proporcionado.
+- **Tablero de Resumen:** Proporciona un resumen de los resultados del escaneo, incluyendo el total de puertos abiertos, el total de vulnerabilidades y un desglose por severidad.
+- **Opciones de Exportación:** Permite a los usuarios exportar los resultados del escaneo en formatos PDF, CSV o JSON.
+- **Interacción del Usuario:** Solicita al usuario después del escaneo si desea exportar los resultados y en qué formato.
 
 ## Instalación
 
-### Requisitos previos
+### Requisitos Previos
 
-- **Go (Golang):** Asegúrese de tener Go instalado en su sistema. Puede descargarlo desde [aquí](https://golang.org/dl/).
-- **Nmap:** Asegúrese de tener Nmap instalado en su sistema. Puede descargarlo desde [aquí](https://nmap.org/download.html).
+- **Go (Golang):** Asegúrate de tener Go instalado en tu sistema. Puedes descargarlo desde [aquí](https://golang.org/dl/).
+- **Nmap:** Asegúrate de tener Nmap instalado en tu sistema. Puedes descargarlo desde [aquí](https://nmap.org/download.html).
 
 ### Pasos
 
-1. **Clonar el repositorio:**
+1. **Clonar el Repositorio:**
 
-```sh
-git clone https://github.com/elliotsecops/Portseeker_Go.git
-cd Portseeker_Go
-```
+   ```sh
+   git clone https://github.com/your-username/Portseeker_Go.git
+   cd Portseeker_Go
+   ```
 
-2. **Iniciar el módulo Go:**
+2. **Inicializar el Módulo Go:**
 
-```sh
-go mod init Portseeker_Go
-```
+   ```sh
+   go mod init Portseeker_Go
+   ```
 
-3. **Instalar dependencias:**
+3. **Instalar Dependencias:**
 
-```sh
-go mod tidy
-```
+   ```sh
+   go mod tidy
+   ```
 
-4. **Compilar el proyecto:**
+4. **Compilar el Proyecto:**
 
-```sh
-go build -o portseeker cmd/main.go
-```
+   ```sh
+   go build -o portseeker cmd/main.go
+   ```
 
 ## Uso
 
-### Bandejas de línea de comandos
+### Bandera de Línea de Comandos
 
-La aplicación admite las siguientes bandejas de línea de comandos:
+La aplicación soporta las siguientes banderas de línea de comandos:
 
 - `--host`: El hostname a escanear (por defecto: `127.0.0.1`).
-- `--start`: El inicio del rango de puertos (por defecto: `1`).
-- `--end`: El fin del rango de puertos (por defecto: `1024`).
-- `--cve`: La ruta al archivo JSON de CVE (por defecto: `cve_json_files/nvdcve-1.1-2024.json`).
+- `--start`: Inicio del rango de puertos (por defecto: `1`).
+- `--end`: Fin del rango de puertos (por defecto: `1024`).
+- `--cve`: Ruta al archivo JSON de CVE (por defecto: `cve_json_files/nvdcve-1.1-2024.json`).
 
-### Ejecución del escaneo
+### Ejecutar el Escaneo
 
-Para ejecutar el escaneo, use el siguiente comando:
+Para ejecutar el escaneo, usa el siguiente comando:
 
 ```sh
 go run cmd/main.go --host=127.0.0.1 --start=1 --end=1024 --cve=cve_json_files/nvdcve-1.1-2024.json
 ```
 
-### Exportación de resultados
+### Exportar Resultados
 
-Después de que el escaneo se ha completado, el programa preguntará al usuario si desea exportar los resultados. Si el usuario elige exportar los resultados, se le pedirá que seleccione el formato (JSON, CSV o PDF) y proporcione un nombre de archivo.
+Después de que el escaneo termine, el programa solicitará al usuario si desea exportar los resultados. Si el usuario elige exportar los resultados, se le pedirá que seleccione el formato (JSON, CSV o PDF) y proporcione un nombre de archivo.
 
 Ejemplo de interacción:
 
 ```sh
-¿Desea exportar los resultados? (sí/no): sí
-En qué formato desea exportar los resultados? (json/csv/pdf): pdf
-Ingrese el nombre del archivo para exportar: vulns
-Resultados exportados con éxito al PDF.
+Do you want to export the results? (yes/no): yes
+In which format do you want to export the results? (json/csv/pdf): pdf
+Enter the filename for export: vulns
+Results exported to PDF successfully.
 ```
 
-## Estructura del proyecto
+## Estructura del Proyecto
 
 El proyecto está organizado en los siguientes directorios y archivos:
 
-```sh
+```
 Portseeker_Go/
 ├── cmd/
 │   └── main.go
@@ -127,31 +142,122 @@ Portseeker_Go/
 └── go.mod
 ```
 
-### Descripción de directorios y archivos
+### Descripción de Directorios y Archivos
 
-- **cmd/main.go:** Punto de entrada de la aplicación. Define bandejas de línea de comandos para el hostname, el inicio del rango de puertos, el fin del rango de puertos y el archivo JSON de CVE. Carga los datos de CVE, escanea el hostname y el rango de puertos utilizando Nmap y muestra el panel de resumen.
-- **internal/cve/cve.go:** Contiene funciones para cargar datos de CVE de un archivo JSON.
-- **internal/scanner/scanner.go:** Contiene funciones para ejecutar Nmap, analizar el resultado y coincidir CVE con puertos abiertos.
+- **cmd/main.go:** El punto de entrada de la aplicación. Define las banderas de línea de comandos para el hostname, puerto de inicio, puerto de fin y archivo CVE. Carga los datos de CVE, escanea el hostname y rango de puertos especificados utilizando Nmap, y muestra el tablero de resumen.
+- **internal/cve/cve.go:** Contiene funciones para cargar datos de CVE desde un archivo JSON.
+- **internal/scanner/scanner.go:** Contiene funciones para ejecutar Nmap, analizar la salida y hacer coincidir CVEs con puertos abiertos.
 - **cve_json_files/:** Directorio que contiene archivos JSON de CVE.
-- **pkg/cve/cve.go:** Contiene funciones para cargar datos de CVE de un archivo JSON.
+- **pkg/cve/cve.go:** Contiene funciones para cargar datos de CVE desde un archivo JSON.
 - **pkg/exporter/exporter.go:** Contiene funciones para exportar resultados de escaneo a formatos JSON, CSV y PDF.
-- **pkg/scanner/scanner.go:** Contiene funciones para ejecutar Nmap, analizar el resultado y coincidir CVE con puertos abiertos.
+- **pkg/scanner/scanner.go:** Contiene funciones para ejecutar Nmap, analizar la salida y hacer coincidir CVEs con puertos abiertos.
 - **go.mod:** Archivo de módulo Go que lista las dependencias del proyecto.
 
 ## Dependencias
 
 El proyecto depende de las siguientes dependencias:
 
-- **Nmap:** Para escanear el hostname y el rango de puertos especificados.
+- **Nmap:** Para escanear el hostname y rango de puertos especificados.
 - **GoFpdf:** Para exportar resultados de escaneo a formato PDF.
 
-Estas dependencias se gestionan mediante módulos Go. El archivo `go.mod` lista las dependencias requeridas.
+Estas dependencias son gestionadas utilizando módulos Go. El archivo `go.mod` lista todas las dependencias requeridas.
 
-## Contribuciones
+## Contribuir
 
-Las contribuciones son bienvenidas! Si desea contribuir a este proyecto solo haz un branch y envía un pull request.
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-Asegúrese de que su código cumpla con los estándares de codificación existentes y incluya pruebas adecuadas.
+1. **Bifurcar el Repositorio:** Haz clic en el botón "Fork" en la esquina superior derecha de la página del repositorio.
+2. **Clonar tu Bifurcación:** Clona el repositorio bifurcado a tu máquina local.
+3. **Crear una Nueva Rama:** Crea una nueva rama para tus cambios.
+4. **Hacer Cambios:** Realiza los cambios necesarios en el proyecto.
+5. **Confirmar Cambios:** Confirma tus cambios con un mensaje de confirmación descriptivo.
+6. **Subir Cambios:** Sube tus cambios a tu repositorio bifurcado.
+7. **Crear una Solicitud de Extracción:** Ve al repositorio original y crea una solicitud de extracción desde tu rama bifurcada.
+
+Por favor, asegúrate de que tu código siga los estándares de codificación existentes e incluya pruebas apropiadas.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## Descargar Archivos CVE
+
+Para descargar los archivos CVE más recientes, puedes usar el script `download_cve_files.sh` proporcionado. Este script descargará los archivos JSON de CVE necesarios desde el NVD (National Vulnerability Database) y los guardará en el directorio `cve_json_files`.
+
+### Script `download_cve_files.sh`
+
+```bash
+#!/bin/bash
+
+# List of all CVE .gz file URLs
+urls=(
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-Modified.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-Recent.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2024.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2023.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2022.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2021.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2020.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2019.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2018.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2017.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2016.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2015.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2014.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2013.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2012.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2011.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2010.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2009.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2008.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2007.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2006.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2005.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2004.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2003.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2002.json.gz"
+)
+
+# Directory to save downloaded files
+download_dir="cve_json_files"
+
+# Create the directory if it doesn't exist
+mkdir -p "$download_dir"
+
+# Function to download a file
+download_file() {
+    local url="$1"
+    local file_name="${url##*/}"
+    echo "Downloading $file_name..."
+    if wget -q -P "$download_dir" "$url"; then
+        echo "$file_name downloaded successfully."
+    else
+        echo "Failed to download $file_name."
+    fi
+}
+
+# Export the function so it can be used by xargs
+export -f download_file
+
+# Use xargs to download files in parallel
+printf '%s\n' "${urls[@]}" | xargs -P 5 -n 1 -I {} bash -c 'download_file "$@"' _ {}
+
+echo "All files downloaded!"
+```
+
+### Ejecutar el Script
+
+Para ejecutar el script, navega al directorio del proyecto y ejecuta el siguiente comando:
+
+```sh
+bash download_cve_files.sh
+```
+
+Esto descargará los archivos CVE más recientes y los guardará en el directorio `cve_json_files`.
+
+---
+
+¡Gracias por usar **Portseeker_Go**! Si tienes alguna pregunta o necesitas más ayuda, por favor abre un issue en el repositorio de GitHub.
 
 ---
 
@@ -170,6 +276,7 @@ Asegúrese de que su código cumpla con los estándares de codificación existen
 6. [Dependencies](#dependencies)
 7. [Contributing](#contributing)
 8. [License](#license)
+9. [Downloading CVE Files](#downloading-cve-files)
 
 ## Introduction
 
@@ -195,7 +302,7 @@ Asegúrese de que su código cumpla con los estándares de codificación existen
 1. **Clone the Repository:**
 
    ```sh
-   git clone https://github.com/elliotsecops/Portseeker_Go.git
+   git clone https://github.com/your-username/Portseeker_Go.git
    cd Portseeker_Go
    ```
 
@@ -331,6 +438,85 @@ Contributions are welcome! If you would like to contribute to this project, plea
 7. **Create a Pull Request:** Go to the original repository and create a pull request from your forked branch.
 
 Please ensure that your code adheres to the existing coding standards and includes appropriate tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Downloading CVE Files
+
+To download the latest CVE files, you can use the provided `download_cve_files.sh` script. This script will download the necessary CVE JSON files from the NVD (National Vulnerability Database) and save them in the `cve_json_files` directory.
+
+### `download_cve_files.sh` Script
+
+```bash
+#!/bin/bash
+
+# List of all CVE .gz file URLs
+urls=(
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-Modified.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-Recent.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2024.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2023.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2022.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2021.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2020.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2019.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2018.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2017.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2016.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2015.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2014.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2013.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2012.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2011.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2010.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2009.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2008.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2007.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2006.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2005.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2004.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2003.json.gz"
+    "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2002.json.gz"
+)
+
+# Directory to save downloaded files
+download_dir="cve_json_files"
+
+# Create the directory if it doesn't exist
+mkdir -p "$download_dir"
+
+# Function to download a file
+download_file() {
+    local url="$1"
+    local file_name="${url##*/}"
+    echo "Downloading $file_name..."
+    if wget -q -P "$download_dir" "$url"; then
+        echo "$file_name downloaded successfully."
+    else
+        echo "Failed to download $file_name."
+    fi
+}
+
+# Export the function so it can be used by xargs
+export -f download_file
+
+# Use xargs to download files in parallel
+printf '%s\n' "${urls[@]}" | xargs -P 5 -n 1 -I {} bash -c 'download_file "$@"' _ {}
+
+echo "All files downloaded!"
+```
+
+### Running the Script
+
+To run the script, navigate to the project directory and execute the following command:
+
+```sh
+bash download_cve_files.sh
+```
+
+This will download the latest CVE files and save them in the `cve_json_files` directory.
 
 ---
 
